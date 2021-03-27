@@ -14,7 +14,7 @@ public class Main {
         fillMatrixDiagonally(7);
         findMinMaxNumbers(8);
         boolean checkBalance = checkBalance(getNumbers(8));
-        moveNumbers(getNumbers(4), 1);
+        moveNumbers(getNumbers(6), 2);
     }
 
     public static void rearrangeNumbers() {
@@ -122,31 +122,22 @@ public class Main {
     }
 
     public static void moveNumbers(int[] numbers, int shift) {
-        System.out.printf("\nЗадача 7:\nСостав массива до изменения:\t%s\n", Arrays.toString(numbers));
+        System.out.printf("\nЗадача 7:\nСостав массива до сдвига:\t\t\t%s\n", Arrays.toString(numbers));
 
-        int limit = numbers.length - 1;
+        int normalizedShift = getNormalizedShift(shift, numbers);
 
-        if (shift > 0) {
-            if (shift > limit) {
-                shift -= limit;
-            }
-        } else {
-            int shiftAbs = Math.abs(shift);
+        int[] copy = getNumbersCopy(numbers);
+        int remainderIndex = numbers.length - normalizedShift;
 
-            if (shiftAbs > limit) {
-                shift = 2 * limit - shiftAbs;
+        for (int i = 0; i < numbers.length; i++) {
+            if (i >= normalizedShift) {
+                numbers[i] = copy[i - normalizedShift];
             } else {
-                shift = limit - shiftAbs;
+                numbers[i] = copy[remainderIndex];
+                remainderIndex++;
             }
         }
-
-        /* TODO
-        for (int i = 0; i < numbers.length - shift; i++) {
-
-        }
-        System.out.printf("\nЗадача 7:\nСостав массива до изменения:\t%s\n", Arrays.toString(numbers));
-        */
-        System.out.println("\n(!) Задачу 7 реализую к Пн - 29.03.");
+        System.out.printf("Состав массива после сдвига на %d:\t%s\n", shift, Arrays.toString(numbers));
     }
 
     public static int[] getNumbers(int length) {
@@ -156,5 +147,38 @@ public class Main {
             numbers[i] = (int) (Math.random() * 10);
         }
         return numbers;
+    }
+
+    public static int[] getNumbersCopy(int[] numbers) {
+        int[] copy = new int[numbers.length];
+
+        for (int i = 0; i < numbers.length; i++) {
+            copy[i] = numbers[i];
+        }
+        return copy;
+    }
+
+    public static int getNormalizedShift(int shift, int[] numbers) {
+        if (shift >= 0 && shift < numbers.length) {
+            return shift;
+        }
+
+        int shiftAbs = Math.abs(shift);
+
+        if (shift < 0 && shiftAbs < numbers.length) {
+            return numbers.length + shift;
+        }
+
+        int multiplicity = (int) (shiftAbs / numbers.length);
+
+        if (shift >= 0) {
+            return shift - multiplicity * numbers.length;
+        }
+
+        if (shiftAbs > numbers.length) {
+            return shiftAbs - multiplicity * numbers.length;
+        }
+
+        return multiplicity * numbers.length - shiftAbs;
     }
 }
