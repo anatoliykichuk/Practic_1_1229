@@ -1,5 +1,7 @@
 package com.company.lesson4;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,19 +31,22 @@ public class Main {
 
         //for (int move = 0; move < POINTS_TO_WIN; move++) {
 
-            makeMove(true);
-            displayPlayingMap();
+        makeUserMove();
 
         //}
 
         scanner.close();
     }
 
-    public static void makeMove(boolean isUser) {
+    public static void makeUserMove() {
         int row, column;
         boolean isAdressIncorect;
 
+        System.out.println("Ваш ход");
+
         do {
+            HashMap<String, Integer> cellAdress = getCellAdressFromUser();
+
             System.out.println("Укажите адрес ячейки:");
             System.out.print("- номер строки: ");
             row = scanner.nextInt();
@@ -49,15 +54,38 @@ public class Main {
             System.out.print("- номер колонки: ");
             column = scanner.nextInt();
 
-            isAdressIncorect = isAdressIncorect(row, column);
+            isAdressIncorect = isAdressIncorect(cellAdress.get("row"), cellAdress.get("column"));
 
             if (isAdressIncorect) {
                 System.out.println("Адрес некорректен - повторите попытку.");
             } else {
-                playing_map[row - 1][column - 1] = isUser ? USER_TAG :PC_TAG;
+                playing_map[row - 1][column - 1] = USER_TAG;
             }
 
         } while (isAdressIncorect);
+
+        displayPlayingMap();
+    }
+
+    public static void makePCMove() {
+
+
+        displayPlayingMap();
+    }
+
+    public static HashMap<String, Integer> getCellAdressFromUser() {
+        System.out.println("Укажите адрес ячейки:");
+        System.out.print("- номер строки: ");
+        int row = scanner.nextInt();
+
+        System.out.print("- номер колонки: ");
+        int column = scanner.nextInt();
+
+        HashMap<String, Integer> cellAdress = new HashMap();
+        cellAdress.put("row", row);
+        cellAdress.put("column", column);
+
+        return cellAdress;
     }
 
     public static boolean isAdressIncorect(int row, int column) {
