@@ -1,5 +1,7 @@
 package com.company.lesson4;
 
+import jdk.nashorn.internal.ir.ReturnNode;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -18,35 +20,25 @@ public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main() {
-
-        /*
-        * заполнить игровое поле
-        * реализовать вывода поля
-        * реализовать метод выполнения ходов
-        * реализовать метод проверки результата - выйграл ли игрок
-        */
-
         initializePlayingMAp();
         displayPlayingMap();
 
-        //for (int move = 0; move < POINTS_TO_WIN; move++) {
+        boolean isWin = isWin(EMPTY_TAG);
 
-        makeUserMove();
-
-        //}
-
+        while (isWin) {
+            if (makeUserMove()) break;
+            if (makePCMove()) break;
+        }
         scanner.close();
     }
 
-    public static void makeUserMove() {
+    public static boolean makeUserMove() {
         int row, column;
         boolean isAdressIncorect;
 
         System.out.println("Ваш ход");
 
         do {
-            HashMap<String, Integer> cellAdress = getCellAdressFromUser();
-
             System.out.println("Укажите адрес ячейки:");
             System.out.print("- номер строки: ");
             row = scanner.nextInt();
@@ -54,7 +46,7 @@ public class Main {
             System.out.print("- номер колонки: ");
             column = scanner.nextInt();
 
-            isAdressIncorect = isAdressIncorect(cellAdress.get("row"), cellAdress.get("column"));
+            isAdressIncorect = isAdressIncorect(row, column);
 
             if (isAdressIncorect) {
                 System.out.println("Адрес некорректен - повторите попытку.");
@@ -65,33 +57,47 @@ public class Main {
         } while (isAdressIncorect);
 
         displayPlayingMap();
+
+        return isWin(USER_TAG);
     }
 
-    public static void makePCMove() {
+    public static boolean makePCMove() {
+        int row, column;
+        boolean isAdressIncorect;
 
+        System.out.println("Ход ПК");
+
+        Random random = new Random();
+
+        do {
+            row = random.nextInt(playing_map.length);
+            column = random.nextInt(playing_map.length);
+
+            isAdressIncorect = isAdressIncorect(row, column);
+
+            if (!isAdressIncorect) {
+                playing_map[row - 1][column - 1] = PC_TAG;
+            }
+
+        } while (isAdressIncorect);
 
         displayPlayingMap();
-    }
 
-    public static HashMap<String, Integer> getCellAdressFromUser() {
-        System.out.println("Укажите адрес ячейки:");
-        System.out.print("- номер строки: ");
-        int row = scanner.nextInt();
-
-        System.out.print("- номер колонки: ");
-        int column = scanner.nextInt();
-
-        HashMap<String, Integer> cellAdress = new HashMap();
-        cellAdress.put("row", row);
-        cellAdress.put("column", column);
-
-        return cellAdress;
+        return isWin(PC_TAG);
     }
 
     public static boolean isAdressIncorect(int row, int column) {
         return row < 1 || row > playing_map.length ||
                 column < 1 || column > playing_map.length ||
                 playing_map[row - 1][column - 1] != EMPTY_TAG;
+    }
+
+    public static boolean isWin(char tag) {
+        if (tag == EMPTY_TAG) {
+            return false;
+        }
+
+        return true;
     }
 
     public static void initializePlayingMAp() {
