@@ -158,8 +158,6 @@ public class Main {
                 }
             }
         }
-        if (tagsCountOnDirectlyDiagonal == POINTS_TO_WIN || tagsCountOnReverselyDiagonal == POINTS_TO_WIN) return true;
-
         return false;
     }
 
