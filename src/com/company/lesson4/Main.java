@@ -97,7 +97,37 @@ public class Main {
             return false;
         }
 
-        return true;
+        int tagsCountOnRow;
+        int tagsCountOnColumn;
+        int tagsCountOnDirectlyDiagonal = 0;
+        int tagsCountOnReverselyDiagonal = 0;
+
+        for (int externalIndex = 0; externalIndex <= playing_map.length; externalIndex++) {
+            tagsCountOnRow = 0;
+            tagsCountOnColumn = 0;
+
+            if (playing_map[externalIndex][externalIndex] == tag) {
+                tagsCountOnDirectlyDiagonal++;
+            }
+
+            if (playing_map[externalIndex][playing_map.length - externalIndex] == tag) {
+                tagsCountOnReverselyDiagonal++;
+            }
+
+            for (int internalIndex = 0; internalIndex <= playing_map.length; internalIndex++) {
+                if (playing_map[externalIndex][internalIndex] == tag) {
+                    tagsCountOnRow++;
+                }
+
+                if (playing_map[internalIndex][externalIndex] == tag) {
+                    tagsCountOnColumn++;
+                }
+            }
+            if (tagsCountOnRow == POINTS_TO_WIN || tagsCountOnColumn == POINTS_TO_WIN) return true;
+        }
+        if (tagsCountOnDirectlyDiagonal == POINTS_TO_WIN || tagsCountOnReverselyDiagonal == POINTS_TO_WIN) return true;
+
+        return false;
     }
 
     public static void initializePlayingMAp() {
