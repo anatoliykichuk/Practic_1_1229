@@ -1,11 +1,5 @@
 package com.company.lesson4;
 
-import jdk.nashorn.internal.ir.ReturnNode;
-import sun.audio.AudioPlayer;
-
-import java.sql.SQLOutput;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -116,41 +110,80 @@ public class Main {
             return false;
         }
 
+        return filledOnDirectlyDiagonal(tag) ||
+                filledOnReverselyDiagonal(tag) ||
+                filledOnHorizontally(tag) ||
+                filledOnVertically(tag);
+    }
+
+    public static boolean filledOnDirectlyDiagonal(char tag) {
         int tagsCountOnDirectlyDiagonal = 0;
-        int tagsCountOnReverselyDiagonal = 0;
 
-        for (int externalIndex = 0; externalIndex < playing_map.length; externalIndex++) {
-            int tagsCountOnRow = 0;
-            int tagsCountOnColumn = 0;
+        for (int index = 0; index < playing_map.length; index++) {
 
-            if (playing_map[externalIndex][externalIndex] == tag) {
+            if (playing_map[index][index] == tag) {
                 tagsCountOnDirectlyDiagonal++;
+
+                if (tagsCountOnDirectlyDiagonal == playing_map.length) return true;
 
                 if (tagsCountOnDirectlyDiagonal == POINTS_TO_WIN &&
                         (playing_map[0][0] != tag ||
                                 playing_map[playing_map.length - 1][playing_map.length - 1] != tag)) return true;
             }
+        }
+        return false;
+    }
 
-            if (playing_map[externalIndex][playing_map.length - externalIndex - 1] == tag) {
+    public static boolean filledOnReverselyDiagonal(char tag) {
+        int tagsCountOnReverselyDiagonal = 0;
+
+        for (int index = 0; index < playing_map.length; index++) {
+
+            if (playing_map[index][playing_map.length - index - 1] == tag) {
                 tagsCountOnReverselyDiagonal++;
+
+                if (tagsCountOnReverselyDiagonal == playing_map.length) return true;
 
                 if (tagsCountOnReverselyDiagonal == POINTS_TO_WIN &&
                         (playing_map[0][playing_map.length - 1] != tag ||
                                 playing_map[playing_map.length - 1][0] != tag)) return true;
             }
+        }
+        return false;
+    }
+
+    public static boolean filledOnHorizontally(char tag) {
+
+        for (int externalIndex = 0; externalIndex < playing_map.length; externalIndex++) {
+            int tagsCountOnRow = 0;
 
             for (int internalIndex = 0; internalIndex < playing_map.length; internalIndex++) {
 
                 if (playing_map[externalIndex][internalIndex] == tag) {
                     tagsCountOnRow++;
 
+                    if (tagsCountOnRow == playing_map.length) return true;
+
                     if (tagsCountOnRow == POINTS_TO_WIN &&
                             (playing_map[externalIndex][0] != tag ||
                                     playing_map[externalIndex][playing_map.length - 1] != tag)) return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    public static boolean filledOnVertically(char tag) {
+
+        for (int externalIndex = 0; externalIndex < playing_map.length; externalIndex++) {
+            int tagsCountOnColumn = 0;
+
+            for (int internalIndex = 0; internalIndex < playing_map.length; internalIndex++) {
 
                 if (playing_map[internalIndex][externalIndex] == tag) {
                     tagsCountOnColumn++;
+
+                    if (tagsCountOnColumn == playing_map.length) return true;
 
                     if (tagsCountOnColumn == POINTS_TO_WIN &&
                             (playing_map[0][externalIndex] != tag ||
@@ -162,9 +195,14 @@ public class Main {
     }
 
     public static boolean isNobodyWon() {
-        for (int index = 0; index < playing_map.length; index++) {
-            if (playing_map[index][index] == EMPTY_TAG) {
-                return false;
+
+        for (int externalIndex = 0; externalIndex < playing_map.length; externalIndex++) {
+
+            for (int internalIndex = 0; internalIndex < playing_map.length; internalIndex++) {
+
+                if (playing_map[externalIndex][internalIndex] == EMPTY_TAG) {
+                    return false;
+                }
             }
         }
         return true;
