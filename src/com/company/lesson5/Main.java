@@ -1,12 +1,14 @@
 package com.company.lesson5;
 
+import javax.sound.midi.Soundbank;
+
 public class Main {
 
     public static int number_of_employees = 5;
 
     public static void main() {
         Employee[] employees = setEployeesList();
-        displayEmployeesList(employees,40);
+        displayEmployeesList(employees, 40);
     }
 
     public static Employee[] setEployeesList() {
@@ -15,7 +17,7 @@ public class Main {
         employees[0] = new Employee("Бендер Остап Ибрагимович", 34,
                 "+7 (985) 755-55-55", "obender@mail.ru", "CEO", 700000.0);
 
-        employees[2] = new Employee("Корейко Александр Иванович", 48,
+        employees[1] = new Employee("Корейко Александр Иванович", 48,
                 "+7 (985) 744-44-44", "akoreyko@mail.ru", "CFO", 500000.0);
 
         employees[2] = new Employee("Паниковский Михаэль Самуэльевич", 72,
@@ -31,10 +33,13 @@ public class Main {
     }
 
     public static void displayEmployeesList(Employee[] employees, int beginningAge) {
+        System.out.printf("Сотрники, старше %d лет:\n", beginningAge);
+
         for (int index = 0; index < employees.length; index++) {
             Employee employee = employees[index];
+            int ageOfEmployee = employee.getAge();
 
-            if (employee.getAge() >= beginningAge) {
+            if (ageOfEmployee > beginningAge) {
                 employee.displayDossier();
             }
         }
