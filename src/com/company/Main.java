@@ -7,6 +7,7 @@ public class Main {
         com.company.lesson2.Main.main();
         com.company.lesson3.Main.main();
         com.company.lesson4.Main.main();
+        com.company.lesson5.Main.main();
     }
 
 }
