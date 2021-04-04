@@ -1,7 +1,5 @@
 package com.company.lesson5;
 
-import javax.sound.midi.Soundbank;
-
 public class Employee {
 
     private String fullName;
