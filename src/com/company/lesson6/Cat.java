@@ -1,6 +1,6 @@
 package com.company.lesson6;
 
-public class Cat extends Animal {
+class Cat extends Animal {
 
     private static final int MAX_RUN_DISTANCE = 200;
 

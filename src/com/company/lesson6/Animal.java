@@ -16,11 +16,20 @@ public abstract class Animal {
         this.name = name;
         this.kind = kind;
         this.sex = sex;
-        this.age = age;
+
+        setAge(age);
     }
 
     public Animal(String name) {
         this.name = name;
+    }
+
+    public void setAge(int age) {
+        if (age > 0 || age < 30) {
+            this.age = age;
+        } else {
+            System.out.println("Возраст должен быть реальным!");
+        }
     }
 
     public abstract void run(int distance);
