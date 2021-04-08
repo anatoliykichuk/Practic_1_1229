@@ -6,28 +6,35 @@ class Cat extends Animal {
 
     public Cat(String name, String kind, String sex, int age) {
         super(name, kind, sex, age);
-        id++;
     }
 
     public Cat(String name) {
         super(name);
-        id++;
     }
 
     @Override
     public void run(int distance) {
+        int acumulatedRunDistanceBefore = acumulatedRunDistance;
         acumulatedRunDistance += distance;
-        int restOfDistance = acumulatedRunDistance - MAX_RUN_DISTANCE;
+        int restRunDistance = MAX_RUN_DISTANCE - acumulatedRunDistance;
 
-        if (restOfDistance >= distance) {
-            System.out.printf("%s побежал %d м...", name, distance);
+        if (MAX_RUN_DISTANCE >= acumulatedRunDistance && acumulatedRunDistance == distance) {
+            System.out.printf("%s побежал %d м...\n", name, distance);
 
-        } else if (restOfDistance > 0) {
-            System.out.printf("%s побежал %d из %d м., так как устал...", name, restOfDistance, distance);
+        } else if (MAX_RUN_DISTANCE >= acumulatedRunDistance && acumulatedRunDistance > distance) {
+            System.out.printf("%s побежал еще %d м...\n", name, distance);
+
+        } else if (restRunDistance < 0 && (distance + restRunDistance) > 0 && acumulatedRunDistanceBefore > 0) {
+            System.out.printf("%s побежал %d из %d м., так как пробежал уже %d м. и устал...\n",
+                    name, (distance + restRunDistance), distance, acumulatedRunDistanceBefore);
+
+        } else if (restRunDistance < 0 && (distance + restRunDistance) > 0) {
+            System.out.printf("%s побежал %d из %d м., так как не в силах пробежать больше %d м...\n",
+                    name, (distance + restRunDistance), distance, MAX_RUN_DISTANCE);
 
         } else {
-            System.out.printf("%s устал и уже не в силах бежать, так как пробежал %d м...",
-                    name, restOfDistance, distance);
+            System.out.printf("%s устал и уже не в силах бежать, так как пробежал %d м...\n",
+                    name, MAX_RUN_DISTANCE);
         }
     }
 
