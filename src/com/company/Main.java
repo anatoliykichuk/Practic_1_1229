@@ -9,6 +9,7 @@ public class Main {
         com.company.lesson4.Main.main();
         com.company.lesson5.Main.main();
         com.company.lesson6.Main.main();
+        com.company.lesson7.Main.main();
     }
 
 }
