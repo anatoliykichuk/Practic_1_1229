@@ -1,15 +1,13 @@
 package com.company.lesson8;
 
-class Human implements Runable, Jumpable {
+class Human extends Participant {
 
-    @Override
-    public void run() {
-
+    public Human(String name) {
+        super(name);
     }
 
-    @Override
-    public void jump() {
-
+    public Human(String name, int runLimit, double jumpLimit) {
+        super(name, runLimit, jumpLimit);
     }
 
 }

@@ -1,15 +1,13 @@
 package com.company.lesson8;
 
-class Robot implements Runable, Jumpable {
+class Robot extends Participant {
 
-    @Override
-    public void run() {
-
+    public Robot(String name) {
+        super(name);
     }
 
-    @Override
-    public void jump() {
-
+    public Robot(String name, int runLimit, double jumpLimit) {
+        super(name, runLimit, jumpLimit);
     }
 
 }

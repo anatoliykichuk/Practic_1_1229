@@ -1,15 +1,13 @@
 package com.company.lesson8;
 
-class Cat implements Runable, Jumpable {
+class Cat extends Participant {
 
-    @Override
-    public void run() {
-
+    public Cat(String name) {
+        super(name);
     }
 
-    @Override
-    public void jump() {
-
+    public Cat(String name, int runLimit, double jumpLimit) {
+        super(name, runLimit, jumpLimit);
     }
 
 }
