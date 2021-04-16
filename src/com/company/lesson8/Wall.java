@@ -1,18 +1,9 @@
 package com.company.lesson8;
 
-class Wall {
+class Wall extends Obstacle {
 
-    private int height;
-
-    public Wall(int height) {
-        this.height = height;
+    public Wall(double limit) {
+        super(limit);
     }
 
-    public void setHeight(int height) {
-        if (height > 0) {
-            this.height = height;
-        } else {
-            System.out.println("Укажите реальную высоту стены");
-        }
-    }
 }

@@ -2,17 +2,17 @@ package com.company.lesson8;
 
 public abstract class Obstacle {
 
-    private int limit;
+    public double limit;
 
-    public Obstacle(int limit) {
-        this.limit = limit;
+    public Obstacle(double limit) {
+        setLimit(limit);
     }
 
-    public void go(int limit) {
+    public void setLimit(double limit) {
         if (limit > 0) {
             this.limit = limit;
         } else {
-            System.out.println("Укажите реальную высоту стены");
+            System.out.println("Укажите реальное значение");
         }
     }
 

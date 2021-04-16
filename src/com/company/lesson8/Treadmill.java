@@ -1,19 +1,9 @@
 package com.company.lesson8;
 
-class Treadmill {
+class Treadmill extends Obstacle {
 
-    private int length;
-
-    public Treadmill(int length) {
-        setLength(length);
-    }
-
-    public void setLength(int length) {
-        if (length > 0) {
-            this.length = length;
-        } else {
-            System.out.println("Укажите реальную длину беговой дорожки");
-        }
+    public Treadmill(int limit) {
+        super(limit);
     }
 
 }
