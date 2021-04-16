@@ -16,4 +16,24 @@ public abstract class Obstacle {
         }
     }
 
+    public void setLimit(int limit) {
+        if (limit > 0) {
+            this.limit = (double) limit;
+        } else {
+            System.out.println("Укажите реальное значение");
+        }
+    }
+
+    public double getLimit() {
+        return limit;
+    }
+
+    boolean isPossibly(double limit) {
+        return (limit >= getLimit());
+    }
+
+    boolean isPossibly(int limit) {
+        return (limit >= (int) getLimit());
+    }
+
 }

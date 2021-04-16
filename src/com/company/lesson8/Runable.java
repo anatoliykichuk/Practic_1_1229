@@ -2,6 +2,6 @@ package com.company.lesson8;
 
 public interface Runable {
 
-    void run();
+    void run(Obstacle obstacle);
 
 }

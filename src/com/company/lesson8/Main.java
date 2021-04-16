@@ -12,14 +12,11 @@ public class Main {
         Participant[] participants = participants();
 
         for (Obstacle obstacle : obstacleCourse) {
-
             for (Participant participant : participants) {
-                participant.run();
-                participant.jump();
+                participant.run(obstacle);
+                participant.jump(obstacle);
             }
-
         }
-
     }
 
     public static Obstacle[] obstacleCourse() {

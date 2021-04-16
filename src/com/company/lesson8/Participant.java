@@ -5,6 +5,7 @@ public abstract class Participant implements Runable, Jumpable {
     public String name;
     public int runLimit;
     public double jumpLimit;
+    public boolean isDroppOut;
 
     public Participant(String name) {
         this.name = name;
@@ -45,16 +46,6 @@ public abstract class Participant implements Runable, Jumpable {
     }
 
     @Override
-    public void run() {
-        System.out.println(getName() + " побежал...");
-    }
-
-    @Override
-    public void jump() {
-        System.out.println(getName() + " прыгнул...");
-    }
-
-    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
@@ -65,6 +56,31 @@ public abstract class Participant implements Runable, Jumpable {
         builder.append("}").append(System.lineSeparator());
 
         return builder.toString();
+    }
+
+    @Override
+    public void run(Obstacle treadmill) {
+        if (!(treadmill instanceof Treadmill) || isDroppOut) return;
+
+        if (treadmill.isPossibly(getRunLimit())) {
+            System.out.println(getName() + " побежал...");
+        } else {
+            isDroppOut = true;
+            System.out.println(getName() + " не в силах больше бежать...");
+        }
+    }
+
+    @Override
+    public void jump(Obstacle wall) {
+        if (!(wall instanceof Wall) || isDroppOut) return;
+
+        if (wall.isPossibly(getJumpLimit())) {
+            System.out.println(getName() + " прыгнул...");
+        } else {
+            isDroppOut = true;
+            System.out.println(getName() + " не в силах больше прыгать...");
+        }
+
     }
 
 }

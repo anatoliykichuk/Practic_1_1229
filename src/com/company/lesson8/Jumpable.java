@@ -2,6 +2,6 @@ package com.company.lesson8;
 
 public interface Jumpable {
 
-    void jump();
+    void jump(Obstacle obstacle);
 
 }
