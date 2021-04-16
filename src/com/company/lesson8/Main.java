@@ -1,7 +1,5 @@
 package com.company.lesson8;
 
-import javax.sound.midi.Soundbank;
-
 public class Main {
 
     public static final int OBSTACLE_COUNT = 5;
@@ -37,8 +35,8 @@ public class Main {
         Participant[] participants = new Participant[PARTICIPANTS_COUNT];
 
         participants[0] = new Human("Михаил", 10, 1.2);
-        participants[1] = new Human("Петр", 8, 1.0);
-        participants[2] = new Cat("Марсик", 6, 1.8);
+        participants[1] = new Human("Марк", 8, 1.0);
+        participants[2] = new Cat("Барсик", 6, 1.8);
         participants[3] = new Cat("Т-1000", 1000, 6);
 
         return participants;

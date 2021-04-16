@@ -33,10 +33,6 @@ public abstract class Participant implements Runable, Jumpable {
         }
     }
 
-    public String getName() {
-        return name;
-    }
-
     public int getRunLimit() {
         return runLimit;
     }
@@ -50,7 +46,7 @@ public abstract class Participant implements Runable, Jumpable {
         StringBuilder builder = new StringBuilder();
 
         builder.append("Участник {");
-        builder.append("имя: ").append(getName());
+        builder.append("имя: ").append(name);
         builder.append(", предел пробега: ").append(getRunLimit());
         builder.append(", предел прыжка: ").append(getJumpLimit());
         builder.append("}").append(System.lineSeparator());
@@ -63,10 +59,10 @@ public abstract class Participant implements Runable, Jumpable {
         if (!(treadmill instanceof Treadmill) || isDroppOut) return;
 
         if (treadmill.isPossibly(getRunLimit())) {
-            System.out.println(getName() + " побежал...");
+            System.out.println(name + " побежал...");
         } else {
             isDroppOut = true;
-            System.out.println(getName() + " не в силах больше бежать...");
+            System.out.println(name + " не в силах больше бежать...");
         }
     }
 
@@ -75,10 +71,10 @@ public abstract class Participant implements Runable, Jumpable {
         if (!(wall instanceof Wall) || isDroppOut) return;
 
         if (wall.isPossibly(getJumpLimit())) {
-            System.out.println(getName() + " прыгнул...");
+            System.out.println(name + " прыгнул...");
         } else {
             isDroppOut = true;
-            System.out.println(getName() + " не в силах больше прыгать...");
+            System.out.println(name + " не в силах больше прыгать...");
         }
 
     }
