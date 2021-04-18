@@ -11,6 +11,7 @@ public class Main {
         com.company.lesson6.Main.main();
         com.company.lesson7.Main.main();
         com.company.lesson8.Main.main();
+        com.company.lesson9.Main.main();
     }
 
 }
