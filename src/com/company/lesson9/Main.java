@@ -8,7 +8,7 @@ public class Main {
         try {
             String[][] matrix = Matrix.getMatrix(4, content);
             System.out.println(Matrix.toString(matrix));
-            System.out.printf("Сумма значений матрицы: %d", Matrix.getSum(matrix));
+            System.out.printf("Sum of matrix values: %d", Matrix.getSum(matrix));
 
         } catch (MyArraySizeException exception) {
             System.out.println(exception.getMessage());
