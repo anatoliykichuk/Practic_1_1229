@@ -4,11 +4,10 @@ public class Main {
 
     public static void main() {
         String[] content = getMatrixContent();
-        int sum = 0;
 
         try {
-            sum = Matrix.getSum(4, content);
-            System.out.printf("Сумма значений матрицы: %d", sum);
+            String[][] matrix = Matrix.getMatrix(5, content);
+            System.out.printf("Сумма значений матрицы: %d", Matrix.getSum(matrix));
 
         } catch (MyArraySizeException exception) {
             System.out.println(exception.getMessage());

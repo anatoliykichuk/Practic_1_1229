@@ -25,7 +25,16 @@ public class Matrix {
 
         for (int row = 0; row < matrix.length; row++) {
             for (int column = 0; column < matrix.length; column++) {
-                sum += Integer.parseInt(matrix[row][column]);
+                try {
+                    sum += Integer.parseInt(matrix[row][column]);
+                } catch (NumberFormatException exception) {
+                    StringBuilder message = new StringBuilder();
+                    message.append("Failed to convert string value to integer in cell ")
+                            .append(row).append(":").append(column)
+                            .append(" (").append(matrix[row][column]).append(")");
+
+                    throw new NumberFormatException(message.toString());
+                }
             }
         }
         return sum;
@@ -39,10 +48,8 @@ public class Matrix {
     public static String toString(String[][] matrix) {
         StringBuilder builder = new StringBuilder();
 
-        for (int row = 0; row < matrix.length; row++) {
-            for (int column = 0; column < matrix.length; column++) {
-                builder.append(Arrays.toString(matrix[row]));
-            }
+        for (int index = 0; index < matrix.length; index++) {
+            builder.append(Arrays.toString(matrix[index])).append(System.lineSeparator());
         }
         return builder.toString();
     }
