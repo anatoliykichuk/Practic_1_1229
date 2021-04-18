@@ -20,7 +20,7 @@ public class Matrix {
         return matrix;
     }
 
-    public static int getSum(String[][] matrix) throws NumberFormatException {
+    public static int getSum(String[][] matrix) throws MyArrayDataException {
         int sum = 0;
 
         for (int row = 0; row < matrix.length; row++) {
@@ -28,19 +28,14 @@ public class Matrix {
                 try {
                     sum += Integer.parseInt(matrix[row][column]);
                 } catch (NumberFormatException exception) {
-                    StringBuilder message = new StringBuilder();
-                    message.append("Failed to convert string value to integer in cell ")
-                            .append(row).append(":").append(column)
-                            .append(" (").append(matrix[row][column]).append(")");
-
-                    throw new NumberFormatException(message.toString());
+                    throw new MyArrayDataException(matrix, row, column);
                 }
             }
         }
         return sum;
     }
 
-    public static int getSum(int size, String[] content) throws MyArraySizeException, NumberFormatException {
+    public static int getSum(int size, String[] content) throws MyArraySizeException, MyArrayDataException {
         String[][]  matrix = getMatrix(size, content);
         return getSum(matrix);
     }

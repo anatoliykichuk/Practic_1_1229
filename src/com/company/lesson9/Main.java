@@ -6,13 +6,14 @@ public class Main {
         String[] content = getMatrixContent();
 
         try {
-            String[][] matrix = Matrix.getMatrix(5, content);
+            String[][] matrix = Matrix.getMatrix(4, content);
+            System.out.println(Matrix.toString(matrix));
             System.out.printf("Сумма значений матрицы: %d", Matrix.getSum(matrix));
 
         } catch (MyArraySizeException exception) {
             System.out.println(exception.getMessage());
 
-        } catch (NumberFormatException exception) {
+        } catch (MyArrayDataException exception) {
             System.out.println(exception.getMessage());
         }
     }
