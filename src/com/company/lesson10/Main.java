@@ -9,11 +9,15 @@ import java.util.HashSet;
 public class Main {
 
     public static void main() {
+        getWordsStatistics();
+    }
+
+    public static void getWordsStatistics() {
         ArrayList<String> words = getWords();
-        System.out.printf("Всего слов: %d\n%s\n", words.size(), words.toString());
+        System.out.printf("1. Всего слов: %d\n%s\n", words.size(), words.toString());
 
         Set<String> uniqueWords = new HashSet<>(words);
-        System.out.printf("Уникальных слов: %d\n%s\n", uniqueWords.size(), uniqueWords.toString());
+        System.out.printf("2. Уникальных слов: %d\n%s\n", uniqueWords.size(), uniqueWords.toString());
 
         Map<String, Integer> wordsCounter = new HashMap<>();
 
@@ -24,7 +28,7 @@ public class Main {
             }
             wordsCounter.put(uniqueWord, count);
         }
-        System.out.printf("Частота слов: %s\n", wordsCounter.toString());
+        System.out.printf("3. Частота слов:\n%s\n", wordsCounter.toString());
     }
 
     public static ArrayList<String> getWords() {
