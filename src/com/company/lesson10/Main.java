@@ -25,32 +25,27 @@ public class Main {
             wordsCounter.put(uniqueWord, count);
         }
         System.out.printf("Частота слов: %s\n", wordsCounter.toString());
-
     }
 
     public static ArrayList<String> getWords() {
         ArrayList<String> words = new ArrayList<>();
         words.add("child");
+        words.add("woman");
         words.add("parents");
         words.add("father");
         words.add("dad");
-        words.add("woman");
         words.add("engineer");
         words.add("mother");
-        words.add("mum");
-        words.add("man");
-        words.add("woman");
         words.add("child");
         words.add("worker");
         words.add("boy");
-        words.add("doctor");
-        words.add("girl");
         words.add("businessman");
         words.add("teacher");
         words.add("dad");
         words.add("driver");
         words.add("worker");
         words.add("engineer");
+        words.add("dad");
         words.add("girl");
         words.add("doctor");
         words.add("mum");
