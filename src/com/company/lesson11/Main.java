@@ -14,6 +14,13 @@ public class Main {
 
         ArrayList<Object> list = castArrayToArrayList(data);
         System.out.println(list.toString());
+
+        Box<Apple> apples = new Box();
+        apples.addFruits(new Apple());
+        apples.addFruits(new Apple());
+
+        System.out.println("Weigth of apples is: " + apples.getWeight());
+
     }
 
     public static void replaceData(Object[] data, int index1, int index2) throws ArrayIndexOutOfBoundsException {
