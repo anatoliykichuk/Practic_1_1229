@@ -18,8 +18,28 @@ public class Main {
         Box<Apple> apples = new Box();
         apples.addFruits(new Apple());
         apples.addFruits(new Apple());
+        apples.addFruits(new Apple());
 
         System.out.println("Weigth of apples is: " + apples.getWeight());
+
+        Box<Orange> oranges = new Box<>();
+        oranges.addFruits(new Orange());
+        oranges.addFruits(new Orange());
+
+        System.out.println("Weigth of oranges is: " + oranges.getWeight());
+        System.out.println("Weigth of oranges and apples are equalse: " + oranges.compare(apples));
+
+        Box<Orange> otherOranges = new Box<>();
+        otherOranges.addFruits(new Orange());
+        otherOranges.addFruits(new Orange());
+        otherOranges.addFruits(new Orange());
+
+        System.out.println("Weigth of other oranges is: " + otherOranges.getWeight());
+
+        otherOranges.empty(oranges);
+
+        System.out.println("Weigth of other oranges after empty is: " + otherOranges.getWeight());
+        System.out.println("Weigth of oranges after addition is: " + oranges.getWeight());
 
     }
 

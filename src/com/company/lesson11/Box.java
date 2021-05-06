@@ -9,6 +9,14 @@ public class Box<T extends Fruit> {
         this.fruits = new ArrayList<>();
     }
 
+    public Box(int capacity) {
+        if (capacity > 0) {
+            this.fruits = new ArrayList<>(capacity);
+        } else {
+            new Box();
+        }
+    }
+
     public void addFruits(T... additionalFruits) {
         for (T fruit : additionalFruits) {
             fruits.add(fruit);
@@ -20,8 +28,8 @@ public class Box<T extends Fruit> {
         return weight * fruits.size();
     }
 
-    public boolean compare(Box<T> boxContent) {
-        return false;
+    public boolean compare(Box<? extends Fruit> fruitBox) {
+        return Math.abs(this.getWeight() - fruitBox.getWeight()) < 0.1;
     }
 
     public void empty(Box<T> box) {

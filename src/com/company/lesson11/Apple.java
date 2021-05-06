@@ -1,10 +1,11 @@
 package com.company.lesson11;
 
 public class Apple extends Fruit{
+    private static final float DEFAULT_WEIGHT = 1.0f;
     private float weight;
 
     public Apple() {
-        this.weight = 1.0f;
+        this.weight = DEFAULT_WEIGHT;
     }
 
     @Override
