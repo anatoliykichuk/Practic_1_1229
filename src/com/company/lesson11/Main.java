@@ -40,7 +40,6 @@ public class Main {
 
         System.out.println("Weigth of other oranges after empty is: " + otherOranges.getWeight());
         System.out.println("Weigth of oranges after addition is: " + oranges.getWeight());
-
     }
 
     public static void replaceData(Object[] data, int index1, int index2) throws ArrayIndexOutOfBoundsException {
