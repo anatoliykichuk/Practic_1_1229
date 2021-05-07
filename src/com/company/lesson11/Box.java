@@ -13,7 +13,7 @@ public class Box<T extends Fruit> {
         if (capacity > 0) {
             this.fruits = new ArrayList<>(capacity);
         } else {
-            new Box();
+            this.fruits = new ArrayList<>();
         }
     }
 
