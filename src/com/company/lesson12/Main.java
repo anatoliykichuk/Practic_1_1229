@@ -7,14 +7,21 @@ public class Main {
     static final int HALF = SIZE / 2;
 
     public static void main() {
-        //float[] data = initializeData();
+        float[] data = initializeData();
         float[] dataOptimally = initializeDataOptimally();
     }
 
     public static float[] initializeData() {
         float[] data = new float[SIZE];
 
+        long beginTime = System.currentTimeMillis();
+
         setInitialValue(data, 0, data.length);
+
+        long endTime = System.currentTimeMillis();
+        long executionTime = (endTime - beginTime) / 1000;
+        System.out.println("initializeData(). Execution time is: " + executionTime + " sec.");
+
         return data;
     }
 
@@ -26,26 +33,12 @@ public class Main {
         Thread firstThread = new Thread(() -> {
             System.out.println("Запуск 1-го потока");
             setInitialValue(data, 0, HALF);
-
-            try {
-                Thread.sleep(100);
-
-            } catch (InterruptedException exception) {
-                exception.fillInStackTrace();
-            }
             System.out.println("Завершение 1-го потока");
         });
 
         Thread secondThread = new Thread(() -> {
             System.out.println("Запуск 2-го потока");
             setInitialValue(data, HALF, data.length);
-
-            try {
-                Thread.sleep(100);
-
-            } catch (InterruptedException exception) {
-                exception.fillInStackTrace();
-            }
             System.out.println("Завершение 2-го потока");
         });
 
@@ -62,8 +55,7 @@ public class Main {
 
         long endTime = System.currentTimeMillis();
         long executionTime = (endTime - beginTime) / 1000;
-
-        System.out.println("Execution time is: " + executionTime + " sec.");
+        System.out.println("initializeDataOptimally(). Execution time is: " + executionTime + " sec.");
 
         return data;
     }
