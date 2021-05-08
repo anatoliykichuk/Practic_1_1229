@@ -30,15 +30,11 @@ public class Main {
         long beginTime = System.currentTimeMillis();
 
         Thread firstThread = new Thread(() -> {
-            System.out.println("Запуск 1-го потока");
             setInitialValue(data, 0, HALF);
-            System.out.println("Завершение 1-го потока");
         });
 
         Thread secondThread = new Thread(() -> {
-            System.out.println("Запуск 2-го потока");
             setInitialValue(data, HALF, data.length);
-            System.out.println("Завершение 2-го потока");
         });
 
         firstThread.start();
@@ -67,15 +63,11 @@ public class Main {
         long beginTime = System.currentTimeMillis();
 
         Thread firstThread = new Thread(() -> {
-            System.out.println("Запуск 1-го потока");
             setFinalValue(data, 0, HALF);
-            System.out.println("Завершение 1-го потока");
         });
 
         Thread secondThread = new Thread(() -> {
-            System.out.println("Запуск 2-го потока");
             setFinalValue(data, HALF, data.length);
-            System.out.println("Завершение 2-го потока");
         });
 
         firstThread.start();
