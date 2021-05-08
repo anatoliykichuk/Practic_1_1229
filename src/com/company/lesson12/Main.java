@@ -8,27 +8,23 @@ public class Main {
 
     public static void main() {
         float[] data = initializeData();
-        float[] dataOptimally = initializeDataOptimally();
+        float[] dataParallely = initializeDataParallely();
 
         setFinalData(data);
-        setFinalDataOptimally(dataOptimally);
+        setFinalDataParallely(dataParallely);
     }
 
     public static float[] initializeData() {
         float[] data = new float[SIZE];
 
         long beginTime = System.currentTimeMillis();
-
         setInitialValue(data, 0, data.length);
-
-        long endTime = System.currentTimeMillis();
-        long executionTime = (endTime - beginTime) / 1000;
-        System.out.println("initializeData(). Execution time is: " + executionTime + " sec.");
+        displayExecutionTime(beginTime, "initializeData()");
 
         return data;
     }
 
-    public static float[] initializeDataOptimally() {
+    public static float[] initializeDataParallely() {
         float[] data = new float[SIZE];
 
         long beginTime = System.currentTimeMillis();
@@ -56,24 +52,18 @@ public class Main {
             exception.fillInStackTrace();
         }
 
-        long endTime = System.currentTimeMillis();
-        long executionTime = (endTime - beginTime) / 1000;
-        System.out.println("initializeDataOptimally(). Execution time is: " + executionTime + " sec.");
+        displayExecutionTime(beginTime, "initializeDataParallely()");
 
         return data;
     }
 
     public static void setFinalData(float[] data) {
         long beginTime = System.currentTimeMillis();
-
         setFinalValue(data, 0, data.length);
-
-        long endTime = System.currentTimeMillis();
-        long executionTime = (endTime - beginTime) / 1000;
-        System.out.println("initializeData(). Execution time is: " + executionTime + " sec.");
+        displayExecutionTime(beginTime, "setFinalData()");
     }
 
-    public static void setFinalDataOptimally(float[] data) {
+    public static void setFinalDataParallely(float[] data) {
         long beginTime = System.currentTimeMillis();
 
         Thread firstThread = new Thread(() -> {
@@ -99,9 +89,7 @@ public class Main {
             exception.fillInStackTrace();
         }
 
-        long endTime = System.currentTimeMillis();
-        long executionTime = (endTime - beginTime) / 1000;
-        System.out.println("initializeDataOptimally(). Execution time is: " + executionTime + " sec.");
+        displayExecutionTime(beginTime, "setFinalDataParallely()");
     }
 
     public static void setInitialValue(float[] data, int initialIndex, int length) {
@@ -120,5 +108,11 @@ public class Main {
                     * Math.cos(0.4f + index / 2)
             );
         }
+    }
+
+    public static void displayExecutionTime(long beginTime, String eventName) {
+        long endTime = System.currentTimeMillis();
+        long executionTime = (endTime - beginTime) / 1000;
+        System.out.println(eventName + ". Execution time is: " + executionTime + " sec.");
     }
 }
