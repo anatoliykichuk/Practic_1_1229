@@ -1,7 +1,5 @@
 package com.company.lesson12;
 
-import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
-
 public class Main {
     static final int SIZE = 10000000;
     static final int HALF = SIZE / 2;
