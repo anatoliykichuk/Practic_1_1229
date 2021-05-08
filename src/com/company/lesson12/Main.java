@@ -27,13 +27,8 @@ public class Main {
 
         long beginTime = System.currentTimeMillis();
 
-        Thread firstThread = new Thread(() -> {
-            setInitialValue(data, 0, HALF);
-        });
-
-        Thread secondThread = new Thread(() -> {
-            setInitialValue(data, HALF, data.length);
-        });
+        Thread firstThread = new Thread(() -> setInitialValue(data, 0, HALF));
+        Thread secondThread = new Thread(() -> setInitialValue(data, HALF, data.length));
 
         firstThread.start();
         secondThread.start();
@@ -60,13 +55,8 @@ public class Main {
     public static void setFinalDataParallely(float[] data) {
         long beginTime = System.currentTimeMillis();
 
-        Thread firstThread = new Thread(() -> {
-            setFinalValue(data, 0, HALF);
-        });
-
-        Thread secondThread = new Thread(() -> {
-            setFinalValue(data, HALF, data.length);
-        });
+        Thread firstThread = new Thread(() -> setFinalValue(data, 0, HALF));
+        Thread secondThread = new Thread(() -> setFinalValue(data, HALF, data.length));
 
         firstThread.start();
         secondThread.start();
