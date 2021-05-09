@@ -9,33 +9,32 @@ public class Main {
 
     public static void main() {
         int[] numbers = getNumbers();
-        System.out.println("Числа до извлечения:\n" + numbers.toString());
+        System.out.println("Числа до извлечения:\n" + showNumbers(numbers));
 
         int[] exctractedNUmbers = extractNumbers(numbers);
-        System.out.println("Числа после извлечения:\n" + exctractedNUmbers.toString());
+        System.out.println("Числа после извлечения:\n" + showNumbers(exctractedNUmbers));
     }
 
     public static int[] extractNumbers(int[] numbers) {
         try {
             int findedIndex = getLastIndex(numbers);
-            ArrayList<Integer> exctractedNUmbers = new ArrayList<>();
-            //exctractedNUmbers.addAll(findedIndex, Arrays.asList(numbers));
+            ArrayList<Integer> extractedNumbersAsList = new ArrayList<>();
 
             for (int index = findedIndex; index < numbers.length; index++) {
-                exctractedNUmbers.add(numbers[index]);
+                extractedNumbersAsList.add(numbers[index]);
             }
-            Object[] numbersAsArray = exctractedNUmbers.toArray();
+            Object[] extractedNumbersAsObject = extractedNumbersAsList.toArray();
+            int[] exctractedNumbers = new int[extractedNumbersAsObject.length];
 
-            for (int index = 0; index < numbersAsArray.length; index++) {
-                exctractedNUmbers.add(numbers[index]);
+            for (int index = 0; index < extractedNumbersAsObject.length; index++) {
+                exctractedNumbers[index] = (int) extractedNumbersAsObject[index];
             }
-
-            //return exctractedNUmbers.toArray();
+            return exctractedNumbers;
 
         } catch (RuntimeException exception) {
             exception.printStackTrace();
         }
-        return int[];
+        return new int[0];
     }
 
     public static int getLastIndex(int[] numbers) throws RuntimeException {
@@ -62,9 +61,20 @@ public class Main {
         int[] numbers = new int[NUMBER_COUNT];
 
         for (int index = 0; index < numbers.length; index++) {
-            numbers[index] = (int) Math.random() * 25;
+            numbers[index] = (int) (Math.random() * 25 + 1);
         }
         return numbers;
     }
 
+    public static String showNumbers(int[] numbers) {
+        StringBuilder builder = new StringBuilder();
+        builder.append("[");
+
+        for (int index = 0; index < numbers.length; index++) {
+            String separator = (index == numbers.length - 1) ? "" : ", ";
+            builder.append(numbers[index]).append(separator);
+        }
+        builder.append("]");
+        return builder.toString();
+    }
 }
