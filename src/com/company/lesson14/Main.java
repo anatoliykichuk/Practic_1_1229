@@ -1,11 +1,9 @@
 package com.company.lesson14;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Main {
     public static final int NUMBER_EXTRACTION_CRITERION = 4;
-    public static final int NUMBER_COUNT = 10;
 
     public static void main() {
         int[] numbers = getNumbers();
@@ -48,7 +46,8 @@ public class Main {
     }
 
     public static int[] getNumbers() {
-        int[] numbers = new int[NUMBER_COUNT];
+        int length = (int) (Math.random() * 10 + 1);
+        int[] numbers = new int[length];
 
         for (int index = 0; index < numbers.length; index++) {
             numbers[index] = (int) (Math.random() * 25 + 1);
