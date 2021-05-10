@@ -24,7 +24,7 @@ class MainTest {
     }
 
     @Test
-    void extractNumbersNoCriterionValue() {
+    void getLastIndexNoCriterionValue() {
         int[] numbers = new int[] {15, 3, 19, 9, 25};
 
         Assertions.assertThrows(
