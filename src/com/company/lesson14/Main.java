@@ -16,54 +16,58 @@ public class Main {
     }
 
     public static int[] extractNumbers(int[] numbers) {
+        int foundIndex = numbers.length;
+
         try {
-            int findedIndex = getLastIndex(numbers);
-            ArrayList<Integer> extractedNumbersAsList = new ArrayList<>();
-
-            for (int index = findedIndex; index < numbers.length; index++) {
-                extractedNumbersAsList.add(numbers[index]);
-            }
-            Object[] extractedNumbersAsObject = extractedNumbersAsList.toArray();
-            int[] exctractedNumbers = new int[extractedNumbersAsObject.length];
-
-            for (int index = 0; index < extractedNumbersAsObject.length; index++) {
-                exctractedNumbers[index] = (int) extractedNumbersAsObject[index];
-            }
-            return exctractedNumbers;
+            foundIndex = getLastIndex(numbers);
 
         } catch (RuntimeException exception) {
             exception.printStackTrace();
         }
-        return new int[0];
+
+        ArrayList<Integer> extractedNumbersAsList = new ArrayList<>();
+
+        for (int index = foundIndex; index < numbers.length; index++) {
+            extractedNumbersAsList.add(numbers[index]);
+        }
+        Object[] extractedNumbersAsObject = extractedNumbersAsList.toArray();
+        int[] exctractedNumbers = new int[extractedNumbersAsObject.length];
+
+        for (int index = 0; index < extractedNumbersAsObject.length; index++) {
+            exctractedNumbers[index] = (int) extractedNumbersAsObject[index];
+        }
+        return exctractedNumbers;
     }
 
     public static int getLastIndex(int[] numbers) throws RuntimeException {
-        int findedIndex = -1;
+        int foundIndex = -1;
 
         for (int index = 0; index < numbers.length; index++) {
             if (numbers[index] == NUMBER_EXTRACTION_CRITERION) {
-                findedIndex = index;
+                foundIndex = index;
             }
         }
 
-        if (findedIndex >= 0 && findedIndex < numbers.length - 1) {
-            findedIndex++;
+        if (foundIndex >= 0 && foundIndex < numbers.length) {
+            foundIndex++;
         }
 
-        if (findedIndex == -1) {
+        if (foundIndex == -1) {
             throw new RuntimeException();
         }
 
-        return findedIndex;
+        return foundIndex;
     }
 
     public static int[] getNumbers() {
-        int[] numbers = new int[NUMBER_COUNT];
+        return new int[] { 19, 22, 4, 17, 4, 17, 22, 18, 7, 7};
 
-        for (int index = 0; index < numbers.length; index++) {
-            numbers[index] = (int) (Math.random() * 25 + 1);
-        }
-        return numbers;
+//        int[] numbers = new int[NUMBER_COUNT];
+//
+//        for (int index = 0; index < numbers.length; index++) {
+//            numbers[index] = (int) (Math.random() * 25 + 1);
+//        }
+//        return numbers;
     }
 
     public static String showNumbers(int[] numbers) {
