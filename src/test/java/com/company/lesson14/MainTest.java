@@ -23,4 +23,14 @@ class MainTest {
         Assertions.assertArrayEquals(expectedResult, exctractedNUmbers);
     }
 
+    @Test
+    void extractNumbersNoCriterionValue() {
+        int[] numbers = new int[] {15, 3, 19, 9, 25};
+
+        Assertions.assertThrows(
+                RuntimeException.class,
+                () -> Main.getLastIndex(numbers)
+        );
+    }
+
 }
