@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Main {
     public static final int NUMBER_EXTRACTION_CRITERION = 4;
+    public static final int[] NUMBERS_SEARCH_CRITERION = new int[] {1, 4};
 
     public static void main() {
         int[] numbers = getNumbers();
@@ -11,6 +12,14 @@ public class Main {
 
         int[] exctractedNUmbers = extractNumbers(numbers);
         System.out.println("Числа после извлечения:\n" + showNumbers(exctractedNUmbers));
+
+        if (isNumbersMeetCriterion(numbers)) {
+            System.out.println("Числа " + showNumbers(numbers)
+                    + " соответствуют критерю: " + showNumbers(NUMBERS_SEARCH_CRITERION));
+        } else {
+            System.out.println("Числа " + showNumbers(numbers)
+                    + " не соответствуют критерю: " + showNumbers(NUMBERS_SEARCH_CRITERION));
+        }
     }
 
     public static int[] extractNumbers(int[] numbers) {
@@ -45,6 +54,19 @@ public class Main {
         return foundIndex;
     }
 
+    public static boolean isNumbersMeetCriterion(int[] numbers) {
+        int countOfCoincidences = 0;
+
+        for (int numberIndex = 0; numberIndex < numbers.length; numberIndex++) {
+            for (int criterionIndex = 0; criterionIndex < NUMBERS_SEARCH_CRITERION.length; criterionIndex++) {
+                if (numbers[numberIndex] == NUMBERS_SEARCH_CRITERION[criterionIndex]) {
+                    countOfCoincidences++;
+                }
+            }
+        }
+        return countOfCoincidences == numbers.length;
+    }
+
     public static int[] getNumbers() {
         int minLength = 8;
         int maxLength = 10;
@@ -69,4 +91,5 @@ public class Main {
         builder.append("]");
         return builder.toString();
     }
+
 }
