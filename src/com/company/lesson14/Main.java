@@ -24,19 +24,7 @@ public class Main {
         } catch (RuntimeException exception) {
             exception.printStackTrace();
         }
-
-        ArrayList<Integer> extractedNumbersAsList = new ArrayList<>();
-
-        for (int index = foundIndex; index < numbers.length; index++) {
-            extractedNumbersAsList.add(numbers[index]);
-        }
-        Object[] extractedNumbersAsObject = extractedNumbersAsList.toArray();
-        int[] exctractedNumbers = new int[extractedNumbersAsObject.length];
-
-        for (int index = 0; index < extractedNumbersAsObject.length; index++) {
-            exctractedNumbers[index] = (int) extractedNumbersAsObject[index];
-        }
-        return exctractedNumbers;
+        return Arrays.copyOfRange(numbers, foundIndex, numbers.length);
     }
 
     public static int getLastIndex(int[] numbers) throws RuntimeException {
@@ -60,14 +48,12 @@ public class Main {
     }
 
     public static int[] getNumbers() {
-        return new int[] { 19, 22, 4, 17, 4, 17, 22, 18, 7, 7};
+        int[] numbers = new int[NUMBER_COUNT];
 
-//        int[] numbers = new int[NUMBER_COUNT];
-//
-//        for (int index = 0; index < numbers.length; index++) {
-//            numbers[index] = (int) (Math.random() * 25 + 1);
-//        }
-//        return numbers;
+        for (int index = 0; index < numbers.length; index++) {
+            numbers[index] = (int) (Math.random() * 25 + 1);
+        }
+        return numbers;
     }
 
     public static String showNumbers(int[] numbers) {
