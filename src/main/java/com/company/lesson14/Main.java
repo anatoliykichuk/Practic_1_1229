@@ -1,12 +1,17 @@
 package com.company.lesson14;
 
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main {
+    private static final Logger logger = Logger.getLogger(Main.class.getName());
     public static final int NUMBER_EXTRACTION_CRITERION = 4;
     public static final int[] NUMBERS_SEARCH_CRITERION = new int[] {1, 4};
 
     public static void main() {
+        logger.log(Level.INFO, "Application running");
+
         int[] numbers = getNumbers();
         System.out.println("Числа до извлечения:\n" + showNumbers(numbers));
 
@@ -30,6 +35,7 @@ public class Main {
 
         } catch (RuntimeException exception) {
             exception.printStackTrace();
+            logger.log(Level.WARNING, exception.getMessage(), exception);
         }
         return Arrays.copyOfRange(numbers, foundIndex, numbers.length);
     }
