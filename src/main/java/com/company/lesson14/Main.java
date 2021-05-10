@@ -13,11 +13,13 @@ public class Main {
         int[] exctractedNUmbers = extractNumbers(numbers);
         System.out.println("Числа после извлечения:\n" + showNumbers(exctractedNUmbers));
 
-        if (isNumbersMeetCriterion(numbers)) {
-            System.out.println("Числа " + showNumbers(numbers)
+        int[] n = new int[] {1, 1, 1, 1, 1, 1};
+
+        if (isNumbersMeetCriterion(n)) {
+            System.out.println("Числа " + showNumbers(n)
                     + " соответствуют критерю: " + showNumbers(NUMBERS_SEARCH_CRITERION));
         } else {
-            System.out.println("Числа " + showNumbers(numbers)
+            System.out.println("Числа " + showNumbers(n)
                     + " не соответствуют критерю: " + showNumbers(NUMBERS_SEARCH_CRITERION));
         }
     }

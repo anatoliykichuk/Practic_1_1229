@@ -55,7 +55,7 @@ class MainTest {
     }
 
     @Test
-    void isNumbersMeetCriterionOnlyNumbers4() {
+    void isNumbersMeetCriterionContanesOtherNumbers() {
         int[] numbers = new int[] {1, 1, 1, 4, 4, 1, 4, 3};
 
         Assertions.assertEquals(false, Main.isNumbersMeetCriterion(numbers));
