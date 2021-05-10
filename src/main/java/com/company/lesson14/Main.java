@@ -1,6 +1,6 @@
 package com.company.lesson14;
 
-import java.util.Arrays;
+import java.util.*;
 
 public class Main {
     public static final int NUMBER_EXTRACTION_CRITERION = 4;
@@ -13,13 +13,11 @@ public class Main {
         int[] exctractedNUmbers = extractNumbers(numbers);
         System.out.println("Числа после извлечения:\n" + showNumbers(exctractedNUmbers));
 
-        int[] n = new int[] {1, 1, 1, 1, 1, 1};
-
-        if (isNumbersMeetCriterion(n)) {
-            System.out.println("Числа " + showNumbers(n)
+        if (isNumbersMeetCriterion(numbers)) {
+            System.out.println("Числа " + showNumbers(numbers)
                     + " соответствуют критерю: " + showNumbers(NUMBERS_SEARCH_CRITERION));
         } else {
-            System.out.println("Числа " + showNumbers(n)
+            System.out.println("Числа " + showNumbers(numbers)
                     + " не соответствуют критерю: " + showNumbers(NUMBERS_SEARCH_CRITERION));
         }
     }
@@ -57,16 +55,32 @@ public class Main {
     }
 
     public static boolean isNumbersMeetCriterion(int[] numbers) {
-        int countOfCoincidences = 0;
+        Set<Integer> uniqueNumbers = uniqueNumbers(numbers);
+        Set<Integer> uniqueSearchNumbers = uniqueNumbers(NUMBERS_SEARCH_CRITERION);
 
-        for (int numberIndex = 0; numberIndex < numbers.length; numberIndex++) {
-            for (int criterionIndex = 0; criterionIndex < NUMBERS_SEARCH_CRITERION.length; criterionIndex++) {
-                if (numbers[numberIndex] == NUMBERS_SEARCH_CRITERION[criterionIndex]) {
-                    countOfCoincidences++;
-                }
+        Set<Integer> combinedNumbers = new HashSet<>();
+        combinedNumbers.addAll(uniqueNumbers);
+        combinedNumbers.addAll(uniqueSearchNumbers);
+
+        if (combinedNumbers.size() != uniqueSearchNumbers.size()) return false;
+
+        int concurrenceCount = 0;
+
+        for (Integer number : uniqueSearchNumbers) {
+            if (uniqueNumbers.contains(number)) {
+                concurrenceCount++;
             }
         }
-        return countOfCoincidences == numbers.length;
+        return concurrenceCount == uniqueSearchNumbers.size();
+    }
+
+    public static Set<Integer> uniqueNumbers(int[] numbers) {
+        Set<Integer> uniqueNumbers = new HashSet<>();
+
+        for (int index = 0; index < numbers.length; index++) {
+            uniqueNumbers.add(numbers[index]);
+        }
+        return uniqueNumbers;
     }
 
     public static int[] getNumbers() {
