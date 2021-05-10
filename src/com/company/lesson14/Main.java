@@ -46,7 +46,10 @@ public class Main {
     }
 
     public static int[] getNumbers() {
-        int length = (int) (Math.random() * 10 + 1);
+        int minLength = 8;
+        int maxLength = 10;
+        int length = (int) (Math.random() * (maxLength - minLength)) + minLength;
+
         int[] numbers = new int[length];
 
         for (int index = 0; index < numbers.length; index++) {
