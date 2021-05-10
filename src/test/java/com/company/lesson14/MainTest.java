@@ -36,28 +36,24 @@ class MainTest {
     @Test
     void isNumbersMeetCriterionExpectedNumbersOnly() {
         int[] numbers = new int[] {1, 1, 1, 4, 4, 1, 4, 4};
-
         Assertions.assertEquals(true, Main.isNumbersMeetCriterion(numbers));
     }
 
     @Test
     void isNumbersMeetCriterionOnlyNumbers1() {
         int[] numbers = new int[] {1, 1, 1, 1, 1, 1};
-
         Assertions.assertEquals(false, Main.isNumbersMeetCriterion(numbers));
     }
 
     @Test
     void isNumbersMeetCriterionOnlyNumbers4() {
         int[] numbers = new int[] {4, 4, 4, 4};
-
         Assertions.assertEquals(false, Main.isNumbersMeetCriterion(numbers));
     }
 
     @Test
     void isNumbersMeetCriterionContanesOtherNumbers() {
         int[] numbers = new int[] {1, 1, 1, 4, 4, 1, 4, 3};
-
         Assertions.assertEquals(false, Main.isNumbersMeetCriterion(numbers));
     }
 
